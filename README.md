@@ -1,4 +1,12 @@
 # Coelsa Challenge
-Es requerido antes de ejecutar la aplicación o ejecutar pruebas unitarias configurar los siguientes parametros.
-## Parametros de configuración en appsettings.json:
+
+## Contenido:
+- Código fuente
+- Script de bbdd (Objetos + datos dummy)
+- Colección de pruebas en postman
+
+## Prerequisitos:
+Antes de ejecutar la aplicación o pruebas unitarias ejecutar el scritp de bbdd(Coelsa_Scritpt_DB.sql).
+
+### Parametros de configuración en appsettings.json:
 SqlConnection: string de conexion a BBDD, se debe configurar tanto en el proyecto de testing(Coelsa.UnitTests) como en el de web api(Coelsa.WebApi).
