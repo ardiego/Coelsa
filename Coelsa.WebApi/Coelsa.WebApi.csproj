@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Coelsa.Common\Coelsa.Common.csproj" />
+    <ProjectReference Include="..\Coelsa.Models\Coelsa.Models.csproj" />
+    <ProjectReference Include="..\Coelsa.Repositories\Coelsa.Repositories.csproj" />
+    <ProjectReference Include="..\Coelsa.Services\Coelsa.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.7.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Coelsa.Common\Coelsa.Common.csproj" />
+    <ProjectReference Include="..\Coelsa.Models\Coelsa.Models.csproj" />
+    <ProjectReference Include="..\Coelsa.Repositories\Coelsa.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
