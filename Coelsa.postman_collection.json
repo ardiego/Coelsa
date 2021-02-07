@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "6a274811-a1f9-42ac-a142-72d1a043da0f",
+		"name": "Coelsa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9095/api/contacts/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"contacts",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Diego\",\r\n    \"lastName\": \"Ardila\",\r\n    \"company\": \"Coelsa S.A.\",\r\n    \"phoneNumber\": \"+541131795840\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9095/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contact",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 12,\r\n    \"firstName\": \"Cornell Jhon\",\r\n    \"lastName\": \"Mullen\",\r\n    \"company\": \"Coelsa S.A.\",\r\n    \"phoneNumber\": \"+541131795840\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9095/api/contacts/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"contacts",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contact",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9095/api/contacts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"contacts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contact by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9095/api/contacts/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"contacts",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Contacts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9095/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get by company result paginated",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9095/api/contacts/Realbridge/1/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9095",
+					"path": [
+						"api",
+						"contacts",
+						"Realbridge",
+						"1",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
