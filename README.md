@@ -5,7 +5,7 @@
 - Script de bbdd (Objetos + datos dummy)
 - Colección de pruebas en postman (Coelsa.postman_collection.json)
 
-## Prerequisitos:
+## Prerrequisitos:
 Antes de ejecutar la aplicación o pruebas unitarias ejecutar el scritp de bbdd(Coelsa_Scritpt_DB.sql).
 
 ### Parametros de configuración en appsettings.json:
