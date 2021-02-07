@@ -1,7 +1,11 @@
-﻿using Coelsa.Repositories;
+﻿using Coelsa.Common;
+using Coelsa.Models;
+using Coelsa.Repositories;
 using Coelsa.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Coelsa.UnitTests
 {
@@ -21,9 +25,13 @@ namespace Coelsa.UnitTests
                 if (_ServiceCollection == null)
                 {
                     _ServiceCollection = new ServiceCollection();
+                    
+                    //Configuration
+                    var jsonConfig = JsonConvert.DeserializeObject<SettingModel>(File.ReadAllText("./appsettings.json"));
+                    ServiceCollection.Configure<SettingModel>(options => options.SqlConnection = jsonConfig.SqlConnection);
 
-                    //load configuration
-                    LoadConfiguration();
+                    //Logger
+                    ServiceCollection.AddSingleton<NLogger>();
 
                     //Repository
                     ServiceCollection.AddScoped<IContactRepository, ContactRepository>();
@@ -35,22 +43,6 @@ namespace Coelsa.UnitTests
                 return _ServiceCollection;
             }
         }
-
-        public static void LoadConfiguration()
-        {
-            //var myConfiguration = new Dictionary<string, string>
-            //                    {
-            //                        {"MongoSettings:Connection", "mongodb://diego.ardila:Optimus%232020@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false"},
-            //                        {"MongoSettings:DatabaseName", "Contactes"}
-            //                    };
-            //Configuration = new ConfigurationBuilder()
-            //.AddInMemoryCollection(myConfiguration)
-            //.Build();
-            Configuration = new ConfigurationBuilder()
-           .AddJsonFile("./appsettings.json", true, true)
-           .Build();
-        }
-
         public static ServiceProvider ServiceProvider
         {
             get

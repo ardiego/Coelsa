@@ -1,6 +1,7 @@
 ﻿using Coelsa.Models;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,13 +12,10 @@ namespace Coelsa.Repositories
 {
     public class ContactRepository :  IContactRepository
     {
-        private readonly IConfiguration _Configuration;
-        private readonly string _Connection = "Data Source=192.168.0.10,1434;Initial Catalog=CoelsaDB;User ID=coelsauser; Password=coelsauser";
-        public ContactRepository()
+        private readonly string _Connection;
+        public ContactRepository(IOptions<SettingModel> configuration)
         {
-            // TODO: Get connection from config file
-            //this._Configuration = configuration;
-            //this._Connection = _Configuration.GetConnectionString("SqlConnection");
+            this._Connection = configuration.Value.SqlConnection;
         }
         public async Task<int> InsertAsync(ContactModel entity)
         {
