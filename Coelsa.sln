@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coelsa.Services", "Coelsa.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coelsa.Common", "Coelsa.Common\Coelsa.Common.csproj", "{E55783A6-3E03-4A6E-9FAA-1CEA2B992C5E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{BC0228CF-E799-4743-80C8-457C80D96C1C}"
+	ProjectSection(SolutionItems) = preProject
+		Coelsa_Scritpt_DB.sql = Coelsa_Scritpt_DB.sql
+		Coelsa.postman_collection.json = Coelsa.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

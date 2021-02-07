@@ -1,6 +1,7 @@
 ﻿using Coelsa.Models;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,13 +12,10 @@ namespace Coelsa.Repositories
 {
     public class ContactRepository :  IContactRepository
     {
-        private readonly IConfiguration _Configuration;
-        private readonly string _Connection = "Data Source=192.168.0.10,1434;Initial Catalog=CoelsaDB;User ID=coelsauser; Password=coelsauser";
-        public ContactRepository()
+        private readonly string _Connection;
+        public ContactRepository(IOptions<SettingModel> configuration)
         {
-            // TODO: Get connection from config file
-            //this._Configuration = configuration;
-            //this._Connection = _Configuration.GetConnectionString("SqlConnection");
+            this._Connection = configuration.Value.SqlConnection;
         }
         public async Task<int> InsertAsync(ContactModel entity)
         {
@@ -56,22 +54,17 @@ namespace Coelsa.Repositories
 
         public async Task<IEnumerable<ContactModel>> GetContactsByCompanyAsync(string company, int pageNumber, int pageSize)
         {
-            var sql =   @"WITH Results_CTE AS
-                        (
-                            SELECT *,
-                                ROW_NUMBER() OVER(ORDER BY CreatedDate) AS RowNum
-                            FROM Contacts
-                            WHERE Company LIKE @Company
-                        )
-                        SELECT *
-                        FROM Results_CTE
-                        WHERE RowNum >= @Offset
-                        AND RowNum < @Offset + @Limit";
+            var sql = @"SELECT *
+                        FROM Contacts
+                        WHERE Company LIKE @Company
+                        ORDER BY CreatedDate
+                        OFFSET @PageSize * (@PageNumber - 1) ROWS
+                        FETCH NEXT @PageSize ROWS ONLY OPTION (RECOMPILE)";
 
             using (var connection = new SqlConnection(this._Connection))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<ContactModel>(sql, new { Company = string.Concat("%",company,"%"), Offset = pageNumber, Limit = pageSize });
+                var result = await connection.QueryAsync<ContactModel>(sql, new { Company = string.Concat("%",company,"%"), PageNumber = pageNumber, PageSize = pageSize });
                 return result.ToList();
             }
         }

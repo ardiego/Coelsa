@@ -1,17 +1,12 @@
 using Coelsa.Common;
+using Coelsa.Models;
 using Coelsa.Repositories;
 using Coelsa.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Coelsa.WebApi
 {
@@ -31,6 +26,9 @@ namespace Coelsa.WebApi
             .AddJsonOptions(options => {
                 options.JsonSerializerOptions.IgnoreNullValues = true;  //ignore values in null
             });
+
+            //Configuration
+            services.Configure<SettingModel>(Configuration.GetSection("Settings"));
 
             //Logger
             services.AddSingleton<NLogger>();
