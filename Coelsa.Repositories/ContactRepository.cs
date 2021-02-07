@@ -54,22 +54,17 @@ namespace Coelsa.Repositories
 
         public async Task<IEnumerable<ContactModel>> GetContactsByCompanyAsync(string company, int pageNumber, int pageSize)
         {
-            var sql =   @"WITH Results_CTE AS
-                        (
-                            SELECT *,
-                                ROW_NUMBER() OVER(ORDER BY CreatedDate) AS RowNum
-                            FROM Contacts
-                            WHERE Company LIKE @Company
-                        )
-                        SELECT *
-                        FROM Results_CTE
-                        WHERE RowNum >= @Offset
-                        AND RowNum < @Offset + @Limit";
+            var sql = @"SELECT *
+                        FROM Contacts
+                        WHERE Company LIKE @Company
+                        ORDER BY CreatedDate
+                        OFFSET @PageSize * (@PageNumber - 1) ROWS
+                        FETCH NEXT @PageSize ROWS ONLY OPTION (RECOMPILE)";
 
             using (var connection = new SqlConnection(this._Connection))
             {
                 connection.Open();
-                var result = await connection.QueryAsync<ContactModel>(sql, new { Company = string.Concat("%",company,"%"), Offset = pageNumber, Limit = pageSize });
+                var result = await connection.QueryAsync<ContactModel>(sql, new { Company = string.Concat("%",company,"%"), PageNumber = pageNumber, PageSize = pageSize });
                 return result.ToList();
             }
         }
