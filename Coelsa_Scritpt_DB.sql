@@ -1024,3 +1024,5 @@ insert into Contacts (FirstName, LastName, Company, PhoneNumber, CreatedDate) va
 insert into Contacts (FirstName, LastName, Company, PhoneNumber, CreatedDate) values ('Maje', 'Goadby', 'Thoughtstorm', '200-199-1954', '2021-01-23');
 insert into Contacts (FirstName, LastName, Company, PhoneNumber, CreatedDate) values ('Siusan', 'Bellocht', 'Meezzy', '723-926-1290', '2020-07-20');
 GO
+
+-- comment example
