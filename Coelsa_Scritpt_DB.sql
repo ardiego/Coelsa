@@ -1026,5 +1026,3 @@ insert into Contacts (FirstName, LastName, Company, PhoneNumber, CreatedDate) va
 GO
 
 -- comment example
-
--- comment example 2
